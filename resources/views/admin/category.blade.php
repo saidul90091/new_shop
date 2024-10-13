@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mx-2">
                 <form action="{{ url('add_category') }}" method="post">
                     @csrf
                     <div class="d-flex justify-content-between">
@@ -40,13 +40,14 @@
                 </form>
             </div>
 
-            <div class="container border p-3 bg-secondary">
+            <div class="border p-2 mx-4 bg-secondary">
                 <table class="table table table-dark table-striped">
                     <thead>
                         <tr class="bg-secondary">
 
                             <th scope="col">Category Name</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
 
                         </tr>
                     </thead>
@@ -55,6 +56,8 @@
                         @foreach ($data as $data)
                             <tr>
                                 <td>{{ $data->category_name }}</td>
+                                <td><a class="btn btn-success btn-sm"
+                                        href="{{ url('edit_category', $data->id) }}">Edit</a></td>
                                 <td><a class="btn btn-danger btn-sm" onclick="confermation(event)"
                                         href="{{ url('delete_category', $data->id) }}">Delete</a></td>
                             </tr>
@@ -62,8 +65,6 @@
                     </tbody>
                 </table>
             </div>
-
-
         </div>
         <!-- JavaScript files-->
 
@@ -89,9 +90,6 @@
                         }
 
                     })
-
-
-
             }
         </script>
 
