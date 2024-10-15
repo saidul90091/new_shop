@@ -30,9 +30,7 @@
                     @csrf
                     <div class="d-flex justify-content-between">
                         <h2 class="">Product Section</h2>
-                        <div>
-                           <a class="btn btn-secondary" href="{{url('add_product')}}">Add Product</a>
-                        </div>
+                        <a class="btn btn-secondary mb-1" href="{{ url('add_product') }}">Add Product</a>
                     </div>
                     <div style="height:5px" class="bg-danger"></div>
                 </form>
@@ -59,19 +57,24 @@
                         @foreach ($products as $product)
                             <tr>
                                 <td>{{ $product->title }}</td>
-                                <td>{{ $product->description }}</td>
-                                <td>{{ $product->image }}</td>
+                                <td>{!! Str::limit($product->description, 50) !!}</td>
+
+                                <td><img style="width:50px; height:50px" src="/products/{{ $product->image }}"
+                                        alt=""></td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->category }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td><a class="btn btn-success btn-sm"
-                                        href="{{url('edit_product',$product->id )}}">Edit</a></td>
+                                        href="{{ url('edit_product', $product->id) }}">Edit</a></td>
                                 <td><a class="btn btn-danger btn-sm" onclick="confermation(event)"
-                                        href="{{url('delete_product',$product->id)}}">Delete</a></td>
+                                        href="{{ url('delete_product', $product->id) }}">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                {{ $products->onEachSide(1)->links() }}
             </div>
         </div>
         <!-- JavaScript files-->

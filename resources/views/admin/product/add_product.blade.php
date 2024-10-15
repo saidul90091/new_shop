@@ -28,12 +28,14 @@
             </div>
 
             <div class="mx-2">
-                <h2 class="">Add Catagory</h2>
+                    <h2 class="">Add Catagory</h2>
                 <div style="height:5px" class="bg-danger"></div>
             </div>
 
             <div class="border p-2 mt-3 container">
-                <h2>Add New Product</h2>
+
+                    <h2>Add New Product</h2>
+
                 <form action="{{url('upload_product')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">

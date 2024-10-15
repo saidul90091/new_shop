@@ -17,7 +17,10 @@
                 </div>
             </div>
             <div class="mx-2">
-                <h2 class="">Edit Product</h2>
+                <div class="d-flex justify-content-between">
+                     <h2 class="">Edit Product</h2>
+                    <a class="btn btn-secondary mb-1" href="{{url('/view_product')}}">Close</a>
+                </div>
                 <div style="height:5px" class="bg-danger"></div>
             </div>
 
@@ -59,14 +62,10 @@
                         <input type="file" name="image">
                     </div>
 
-
-                  
                      <input type="submit" value="submit">
                 </form>
 
             </div>
-
-
 
         </div>
         <!-- JavaScript files-->
