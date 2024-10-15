@@ -29,24 +29,24 @@
                 <form action="{{url('update_product', $products->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Product Title</label>
+                        <label class="form-label">Product Title:</label>
                         <input type="text" name="title" class="form-control" value="{{$products->title}}">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Product Price</label>
+                        <label class="form-label">Product Price:</label>
                         <input type="text" name="price" class="form-control" value="{{$products->price}}">
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Quantity</label>
+                        <label class="form-label">Quantity:</label>
                         <input type="number" name="quantity" class="form-control" value="{{$products->quantity}}">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea name="description" id="" cols="30" rows="10" class="form-control" value="{{$products->description}}"></textarea>
+                        <label class="form-label">Description:</label>
+                        <textarea name="description" id="" cols="30" rows="10" class="form-control" value="">{{$products->description}}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label>Product Category</label>
+                        <label>Product Category:</label>
                         <br>
                         <select name="category" id="" required>
                             <option value="{{$products->category}}">{{$products->category}}</option>
@@ -58,7 +58,8 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Product Image</label><br>
+                        <label class="form-label">Product Image:</label><br>
+                        <img class="mb-1" style="width:50px; height:50px" src="/products/{{$products->image}}" alt="current img"><br>
                         <input type="file" name="image">
                     </div>
 

@@ -58,6 +58,7 @@
                             <tr>
                                 <td>{{ $product->title }}</td>
                                 <td>{!! Str::limit($product->description, 50) !!}</td>
+                                {{-- <td>{{$product->description}}</td> --}}
 
                                 <td><img style="width:50px; height:50px" src="/products/{{ $product->image }}"
                                         alt=""></td>

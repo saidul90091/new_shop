@@ -96,6 +96,7 @@ class AdminController extends Controller
         $products = Product::find($id);
         $categorys = Category::all();
         return view('admin.product.edit_product', compact('products','categorys'));
+
     }
 
 
@@ -104,6 +105,7 @@ class AdminController extends Controller
         $products = Product::find($id);
         $products->title = $request->title;
         $products->description = $request->description;
+        
         $image = $request->image;
 
         if ($image) {
@@ -124,6 +126,13 @@ class AdminController extends Controller
     public function delete_product($id){
 
         $product = Product::find($id);
+        $image_path = public_path('products/'.$product->image);
+
+        if(file_exists($image_path)){
+            unlink($image_path);
+        }
+
+
         $product->delete();
 
         toastr()->timeOut(1000)->closeButton(true)->success('Product Delete successfylly');
