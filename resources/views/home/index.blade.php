@@ -21,7 +21,7 @@
     <!-- end hero area -->
 
     <!-- shop section -->
-    @include('home.shop')
+    @include('home.product')
 
     <!-- end shop section -->
 

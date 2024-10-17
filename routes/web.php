@@ -4,13 +4,17 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use GuzzleHttp\Middleware;
+use Illuminate\Routing\Console\MiddlewareMakeCommand;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class,'home']);
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('home.index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+route::get('/dashboard', [HomeController::class, 'login_home'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,6 +43,9 @@ route::get('view_product',[AdminController::class, 'view_product'])->middleware(
 route::get('edit_product/{id}',[AdminController::class, 'edit_product'])->middleware(['auth','admin']);
 route::post('update_product/{id}',[AdminController::class, 'update_product'])->middleware(['auth','admin']);
 route::get('delete_product/{id}', [AdminController::class, 'delete_product'])->middleware(['auth','admin']);
+route::get('search_product', [AdminController::class, 'search_product'])->middleware(['auth', 'admin']);
+route::get('details_product/{id}', [HomeController::class, 'details_product']);
+route::get('add_cart/{id}', [HomeController::class, 'add_cart'])->middleware(['auth', 'verified']);
 
 
 

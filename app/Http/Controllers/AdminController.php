@@ -105,7 +105,7 @@ class AdminController extends Controller
         $products = Product::find($id);
         $products->title = $request->title;
         $products->description = $request->description;
-        
+
         $image = $request->image;
 
         if ($image) {
@@ -138,6 +138,16 @@ class AdminController extends Controller
         toastr()->timeOut(1000)->closeButton(true)->success('Product Delete successfylly');
 
         return redirect()->back();
+    }
+
+
+    public function search_product(Request $request){
+
+        $search = $request->search;
+        $products = Product::where('title', 'LIKE', '%'.$search.'%')->orWhere('category', 'LIKE', '%'.$search.'%')->paginate(3);
+        return view('admin.product.view_product', compact('products'));
+
+
     }
 
 

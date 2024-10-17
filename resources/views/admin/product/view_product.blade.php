@@ -25,18 +25,26 @@
                 </div>
             </div>
 
-            <div class="mx-2">
-                <form action="{{ url('add_product') }}" method="post">
-                    @csrf
-                    <div class="d-flex justify-content-between">
-                        <h2 class="">Product Section</h2>
-                        <a class="btn btn-secondary mb-1" href="{{ url('add_product') }}">Add Product</a>
+
+            <div class="d-flex justify-content-between mx-2">
+                <h2 class="">Product Section</h2>
+                <div class="d-flex mb-1">
+                    <div class="mx-2">
+                        <form class="border rounded p-1 d-flex align-content-center" action="{{ url('search_product') }}" method="get">
+                            @csrf
+                            <input class="rounded" type="search" name="search" id="">
+                            <input class="btn btn-secondary btn-sm" type="submit" value="🔎">
+                        </form>
                     </div>
-                    <div style="height:5px" class="bg-danger"></div>
-                </form>
+                    <a class="btn btn-secondary" href="{{ url('add_product') }}">Add Product</a>
+                </div>
             </div>
 
-            <div class="border p-2 mx-4 bg-secondary">
+
+            <div style="height:5px" class="bg-danger"></div>
+
+
+            <div class="border p-2 mt-2 mx-4 bg-secondary">
                 <table class="table table table-dark table-striped">
                     <thead>
                         <tr class="bg-secondary">
@@ -58,7 +66,6 @@
                             <tr>
                                 <td>{{ $product->title }}</td>
                                 <td>{!! Str::limit($product->description, 50) !!}</td>
-                                {{-- <td>{{$product->description}}</td> --}}
 
                                 <td><img style="width:50px; height:50px" src="/products/{{ $product->image }}"
                                         alt=""></td>
