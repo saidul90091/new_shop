@@ -39,7 +39,7 @@
                 @if (Route::has('login'))
                     @auth
 
-                    <a class="btn btn-warning px-3 position-relative" href="">
+                    <a class="btn btn-warning btn-sm px-3 position-relative" href="{{url('mycart')}}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
                             {{$count}}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +24,7 @@ class HomeController extends Controller
             $user = Auth::user();
             $userid = $user->id;
             $count = Cart::where('user_id', $userid)->count();
-        }
-        else{
+        } else {
             $count = '';
         }
 
@@ -39,8 +39,7 @@ class HomeController extends Controller
             $user = Auth::user();
             $userid = $user->id;
             $count = Cart::where('user_id', $userid)->count();
-        }
-        else{
+        } else {
             $count = '';
         }
 
@@ -57,8 +56,7 @@ class HomeController extends Controller
             $user = Auth::user();
             $userid = $user->id;
             $count = Cart::where('user_id', $userid)->count();
-        }
-        else{
+        } else {
             $count = '';
         }
 
@@ -79,4 +77,76 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function mycart()
+    {
+
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+            $count = Cart::where('user_id', $userid)->count();
+            $cart = Cart::where('user_id', $userid)->get();
+        }
+
+
+        return view('home.mycart', compact('count', 'cart'));
+    }
+
+    public function remove_cart($id)
+    {
+
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+            $cartItem = Cart::where('id', $id)->where('user_id', $userid);
+
+            $cartItem->delete();
+            return redirect()->back();
+        }
+    }
+
+
+    public function order_confirm(Request $request){
+
+
+        $name = $request->name;
+        $address = $request->address;
+        $phone = $request->phone;
+        $userid = Auth::user()->id;
+        $cart = Cart::where('user_id', $userid)->get();
+
+        foreach($cart as $product){
+            $order = new Order;
+
+            $order->name = $name;
+            $order->rec_address = $address;
+            $order-> phone = $phone;
+            $order->user_id = $userid;
+            $order->product_id = $product->product_id;
+            $order->save();
+        }
+
+        $cart_remove = Cart::where('user_id', $userid)->get();
+
+        foreach($cart_remove as $remove){
+            $data = Cart::find($remove->id);
+            $data->delete();
+        }
+
+        toastr()->timeOut(1000)->closeButton(true)->success('Product Ordered successfylly');
+
+        return redirect()->back();
+
+    }
+
+
+
+
+
+
+
+
+
+
 }
