@@ -20,6 +20,7 @@
                 <li><a href="#">Page</a></li>
             </ul>
         </li>
+        <li><a href="{{url('view_order')}}"> <i class="icon-grid"></i>Orders</a></li>
 
     </ul>
 
