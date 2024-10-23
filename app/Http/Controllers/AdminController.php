@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller
 {
@@ -151,7 +153,41 @@ class AdminController extends Controller
 
     // Order section
 
-  
+  public function view_order(){
+    $orders = Order::all();
+    return view('admin.order.view_order',compact('orders'));
+  }
+
+  public function success($id){
+    $orders = Order::find($id);
+    $orders->status = 'success';
+    $orders->save();
+
+    return redirect('/view_order');
+
+  }
+
+  public function on_the_way($id){
+    $orders = Order::find($id);
+    $orders->status = "on the way";
+    $orders->save();
+
+    return redirect('/view_order');
+  }
+
+//   pdf
+public function print_pdf($id){
+
+    $orders = Order::find($id);
+
+    $pdf = Pdf::loadView('admin.invoice',compact('orders'));
+    return $pdf->download('invoice.pdf');
+
+    // return view('admin.invoice',compact('orders'));
+
+
+
+}
 
 
 }

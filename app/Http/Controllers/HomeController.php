@@ -63,6 +63,8 @@ class HomeController extends Controller
         return view('home.products.details_product', compact('data', 'count'));
     }
 
+    // Cart 
+
     public function add_cart($id)
     {
         $product_id = $id;
@@ -106,6 +108,7 @@ class HomeController extends Controller
         }
     }
 
+// Order
 
     public function order_confirm(Request $request){
 
