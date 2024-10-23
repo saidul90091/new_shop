@@ -13,7 +13,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+
+        $users = User::where('usertype', 'user')->get()->count();
+        $products= Product::all()->count();
+        $orders = Order::all()->count();
+        $delevereds = Order::where('status', 'success')->get()->count();
+
+
+
+        return view('admin.index',compact('users', 'products', 'orders', 'delevereds'));
+
     }
 
     public function home()
@@ -63,7 +72,7 @@ class HomeController extends Controller
         return view('home.products.details_product', compact('data', 'count'));
     }
 
-    // Cart 
+    // Cart
 
     public function add_cart($id)
     {
