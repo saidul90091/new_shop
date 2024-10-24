@@ -56,6 +56,7 @@ Route::get('view_order', [AdminController::class, 'view_order'])->middleware(['a
 Route::get('success/{id}', [AdminController::class, 'success'])->middleware(['auth', 'admin']);
 Route::get('on_the_way/{id}', [AdminController::class, 'on_the_way'])->middleware(['auth', 'admin']);
 Route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware(['auth', 'admin']);
+Route::get('my_order', [HomeController::class, 'my_order'])->middleware(['auth', 'verified']);
 
 
 

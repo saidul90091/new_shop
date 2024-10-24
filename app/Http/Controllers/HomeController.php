@@ -15,14 +15,13 @@ class HomeController extends Controller
     {
 
         $users = User::where('usertype', 'user')->get()->count();
-        $products= Product::all()->count();
+        $products = Product::all()->count();
         $orders = Order::all()->count();
         $delevereds = Order::where('status', 'success')->get()->count();
 
 
 
-        return view('admin.index',compact('users', 'products', 'orders', 'delevereds'));
-
+        return view('admin.index', compact('users', 'products', 'orders', 'delevereds'));
     }
 
     public function home()
@@ -117,9 +116,10 @@ class HomeController extends Controller
         }
     }
 
-// Order
+    // Order
 
-    public function order_confirm(Request $request){
+    public function order_confirm(Request $request)
+    {
 
 
         $name = $request->name;
@@ -128,12 +128,12 @@ class HomeController extends Controller
         $userid = Auth::user()->id;
         $cart = Cart::where('user_id', $userid)->get();
 
-        foreach($cart as $product){
+        foreach ($cart as $product) {
             $order = new Order;
 
             $order->name = $name;
             $order->rec_address = $address;
-            $order-> phone = $phone;
+            $order->phone = $phone;
             $order->user_id = $userid;
             $order->product_id = $product->product_id;
             $order->save();
@@ -141,7 +141,7 @@ class HomeController extends Controller
 
         $cart_remove = Cart::where('user_id', $userid)->get();
 
-        foreach($cart_remove as $remove){
+        foreach ($cart_remove as $remove) {
             $data = Cart::find($remove->id);
             $data->delete();
         }
@@ -149,16 +149,14 @@ class HomeController extends Controller
         toastr()->timeOut(1000)->closeButton(true)->success('Product Ordered successfylly');
 
         return redirect()->back();
-
     }
 
+    public function my_order(){
 
+        $user = Auth::user()->id;
+        $count = Cart::where('user_id', $user)->get()->count();
+        $orders = Order::where('user_id', $user)->get();
 
-
-
-
-
-
-
-
+        return view('home.order.my_order',compact('count', 'orders'));
+    }
 }

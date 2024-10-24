@@ -15,7 +15,7 @@
             <div class="navbar-header">
                 <!-- Navbar Header--><a href="{{url('admin/dashboard')}}" class="navbar-brand">
                     <div class="brand-text brand-big visible text-uppercase"><strong
-                            class="text-primary">Dark</strong><strong>Admin</strong></div>
+                            class="text-primary">New</strong><strong>Shop</strong></div>
                     <div class="brand-text brand-sm"><strong class="text-primary">D</strong><strong>A</strong></div>
                 </a>
                 <!-- Sidebar Toggle Btn-->
@@ -24,6 +24,7 @@
 
                 <!-- Log out               -->
                 <div class="list-inline-item logout">
+                    
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                             <input type="submit" value="Logout">

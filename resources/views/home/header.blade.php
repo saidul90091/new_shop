@@ -1,8 +1,8 @@
 <header class="header_section">
     <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="">
             <span>
-                Giftos
+                Gift Shop
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">
@@ -39,17 +39,26 @@
                 @if (Route::has('login'))
                     @auth
 
-                    <a class="btn btn-warning btn-sm px-3 position-relative" href="{{url('mycart')}}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
-                            {{$count}}
-                    </a>
+                    <a href="{{url('my_order')}}">My Orders</a>
+
+                        <a class="btn btn-warning btn-sm px-3 position-relative" href="{{ url('mycart') }}">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+                                {{ $count }}
+                        </a>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <input class="btn btn-warning btn-sm mx-2" type="submit" value="logout">
-
                         </form>
+
+                        <div class="">
+                            <a href="" class="m-0"><img src="" alt="">
+                                <i style="border-radius:50%;" class='fa border p-1 fa-user-circle'></i>
+                            </a>
+                            <h6 class="d-inline">{{ Auth::user()->name }}</h6>
+                        </div>
                     @else
                         <a href="{{ url('/login') }}">
                             <i class="fa fa-user" aria-hidden="true"></i>
