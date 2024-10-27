@@ -69,7 +69,7 @@
                 @endforeach
 
                 <div class="mb-2 d-flex justify-content-end">
-                    <a class="btn btn-secondary btn-sm" href="{{ url('/') }}">view all</a>
+                    <a class="btn btn-secondary btn-sm" href="{{ url('/') }}">all product</a>
                 </div>
             </div>
 
@@ -100,7 +100,8 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary btn-sm">Place Order</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Cash On Delivery</button>
+                        <a class="btn btn-success btn-sm" href="{{url('stripe',$value)}}">Pay Using Card</a>
                     </form>
                 </div>
             </div>
@@ -122,7 +123,7 @@
 
 
 
-   
+
 
 </body>
 

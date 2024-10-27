@@ -60,3 +60,17 @@ Route::get('my_order', [HomeController::class, 'my_order'])->middleware(['auth',
 
 
 
+// stripe payment gatway
+
+Route::controller(HomeController::class)->group(function(){
+
+    Route::get('stripe/{value}', 'stripe');
+
+    Route::post('stripe/{value}', 'stripePost')->name('stripe.post');
+
+});
+
+
+
+
+
