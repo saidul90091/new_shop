@@ -58,7 +58,12 @@ Route::get('on_the_way/{id}', [AdminController::class, 'on_the_way'])->middlewar
 Route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware(['auth', 'admin']);
 Route::get('my_order', [HomeController::class, 'my_order'])->middleware(['auth', 'verified']);
 
+// shop
 
+route::get('shop', [HomeController::class, 'shop']);
+route::get('why_us', [HomeController::class, 'why_us']);
+route::get('testimonial', [HomeController::class, 'testimonial']);
+route::get('contact_us', [HomeController::class, 'contact_us']);
 
 // stripe payment gatway
 

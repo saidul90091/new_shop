@@ -224,4 +224,59 @@ class HomeController extends Controller
 
         return redirect('mycart');
     }
+
+
+    // shop
+    public function shop(){
+        $products = Product::all();
+
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+            $count = Cart::where('user_id', $userid)->count();
+        } else {
+            $count = '';
+        }
+
+
+        return view('shop.shop', compact('products', 'count'));
+    }
+
+    public function testimonial(){
+
+        if(Auth::id()){
+            $user = Auth::user();
+            $userid = $user->id;
+            $count = Cart::where('user_id', $userid)->count();
+        }else{
+            $count = '';
+        }
+
+        return view('testimonial.testimonial',compact('count'));
+    }
+    public function why_us(){
+
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+            $count = Cart::where('user_id', $userid)->count();
+        } else {
+            $count = '';
+        }
+
+        return view('why-us.why_us', compact('count'));
+    }
+
+    public function contact_us(){
+
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+            $count = Cart::where('user_id', $userid)->count();
+        } else {
+            $count = '';
+        }
+
+        return view('contact.contact_us', compact('count'));
+    }
 }

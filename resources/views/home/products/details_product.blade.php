@@ -33,7 +33,7 @@
                         <p class="card-text">{{ $data->description }}</p>
                         <p class="card-text"><small class="text-body-secondary">Price: {{ $data->price }}</small></p>
                         <p class="card-text"><small class="text-body-secondary">Quantity: {{ $data->quantity}}</small></p>
-                        <button class="btn btn-secondary">Buy Now</button>
+                        <a class="btn btn-warning btn-sm" href="{{url('add_cart',$data->id)}}">Add to Cart</a>
                     </div>
                 </div>
             </div>
